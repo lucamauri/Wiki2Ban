@@ -9,10 +9,36 @@
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/lucamauri/PageToGitHub.svg)](http://isitmaintained.com/project/lucamauri/PageToGitHub "Average time to resolve an issue")
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/lucamauri/PageToGitHub.svg)](http://isitmaintained.com/project/lucamauri/PageToGitHub "Percentage of issues still open")
 
-# PageToGitHub
+# Wiki2Ban
 
-<img align="left" width="64px" src="https://www.lucamauri.com/content/images/logo/PageToGitHub.png">PageToGitHub, P2G in short, is a MediaWiki extension to automatically transfer code from a MediaWiki wiki to GitHub.
+<img align="left" width="64px" src="https://www.lucamauri.com/content/images/logo/Wiki2Ban.png">PageToGitHub, P2G in short, is a MediaWiki extension to automatically transfer code from a MediaWiki wiki to GitHub.
 It was originally conceived and written by [Luca Mauri](https://github.com/lucamauri) for use in [Wikitrek](https://github.com/WikiTrek): it is released as open source here in case it can be useful to anybody else.
+
+## Notes
+
+https://www.php.net/manual/en/datetime.format.php
+ISO 8601 date
+
+```PHP
+$date = new DateTime('2000-01-01');
+echo $date->format('c');
+```
+
+https://www.burlutsky.su/security/fail2ban-add-custom-rule/
+
+```log
+2004-02-12T15:19:21+00:00 MediaWiki login FAIL on WikiTrek from: 192.168.1.38
+```
+
+```PHP
+$date .. " MediaWiki login FAIL on " .. $wgSitename .. " from: " .. $sourceIP
+```
+
+https://regex101.com/r/i9RxRO/1/
+
+```regex
+(?P<timestamp>.*) MediaWiki login FAIL on (?P<wiki>.*) from: <HOST>
+```
 
 ## Features
 
