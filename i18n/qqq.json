@@ -1,0 +1,13 @@
+{
+  "@metadata": {
+    "authors": ["Luca Mauri"]
+  },
+  "auto-upload": "''Auto upload'' message on GitHub",
+  "auto-commit": "''Auto commit'' message on GitHub",
+  "code-from-page": "Prefix to the page name",
+  "p2g-config-namespace": "Description of the namespace",
+  "pagetogithub": "Placeholder for product name",
+  "p2g-specialpage-text": "Intro of the ''Special'' page",
+  "p2g-specialpage-variables-text": "Intro of the ''Configuration'' section",
+  "p2g-specialpage-config-title": "Title of the ''config'' section"
+}
