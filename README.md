@@ -11,7 +11,7 @@
 
 # Wiki2Ban
 
-<img align="left" width="64px" src="https://www.lucamauri.com/content/images/logo/Wiki2Ban.png">PageToGitHub, P2G in short, is a MediaWiki extension to automatically transfer code from a MediaWiki wiki to GitHub.
+<img align="left" width="64px" src="https://www.lucamauri.com/content/images/logo/Wiki2Ban.png">Wiki2Ban, W2B in short, is a MediaWiki extension to generate log of failed authentication that can be fed into [Fail2Ban](https://github.com/fail2ban/fail2ban) to block relevant IP addresses.
 It was originally conceived and written by [Luca Mauri](https://github.com/lucamauri) for use in [Wikitrek](https://github.com/WikiTrek): it is released as open source here in case it can be useful to anybody else.
 
 ## Notes
@@ -32,6 +32,7 @@ https://www.burlutsky.su/security/fail2ban-add-custom-rule/
 
 ```PHP
 $date .. " MediaWiki login FAIL on " .. $wgSitename .. " from: " .. $sourceIP
+"$date MediaWiki login FAIL on $wgSitename from: $sourceIP\n"
 ```
 
 https://regex101.com/r/i9RxRO/1/

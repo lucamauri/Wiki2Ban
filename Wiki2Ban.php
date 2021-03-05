@@ -18,6 +18,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Auth;
 
 class Wiki2BanHooks
 {
@@ -30,10 +31,18 @@ class Wiki2BanHooks
 	 */
     public static function onAuthManagerLoginAuthenticateAudit($response, $user, $username)
     {
-        //TODO check formatting of timestamp
-        $time = date ("Y-m-d H:i:s T");
-        $ip = $_SERVER['REMOTE_ADDR']; // wfGetIP() may yield different results for proxies
+        $logFilePath = "/var/log/wiki2ban.log";
+        if ( $response->status == "FAIL" ){
+            $now = new DateTime('NOW');
+            $logTimeStamp = $now->format('c');
+            wfDebugLog('Wiki2Ban', 'TimeStamp is: ' . $logTimeStamp);
 
+            $clientIP = $_SERVER['REMOTE_ADDR']; //https://www.php.net/manual/en/reserved.variables.server.php
+            wfDebugLog('Wiki2Ban', 'IP address is: ' . $clientIP);
+
+            error_log("$date MediaWiki login FAIL on $wgSitename from: $sourceIP\n", 3, $logFilePath);
+        }
+        return true; // continue to next hook
     }
 }
 
