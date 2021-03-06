@@ -24,7 +24,8 @@ class Wiki2BanHooks
 {
     /**
 	 * Hook for login auditing
-	 *
+	 * https://www.mediawiki.org/wiki/Manual:Hooks/AuthManagerLoginAuthenticateAudit
+     * 
 	 * @param AuthenticationResponse    $response Is login successful?
 	 * @param User|null                 $user User object on successful auth
 	 * @param string                    $username Username for failed attempts.
@@ -40,7 +41,9 @@ class Wiki2BanHooks
             $clientIP = $_SERVER['REMOTE_ADDR']; //https://www.php.net/manual/en/reserved.variables.server.php
             wfDebugLog('Wiki2Ban', 'IP address is: ' . $clientIP);
 
-            error_log("$date MediaWiki login FAIL on $wgSitename from: $sourceIP\n", 3, $logFilePath);
+            if (!error_log("$date MediaWiki login FAIL on $wgSitename from: $sourceIP\n", 3, $logFilePath)){
+                wfDebugLog('Wiki2Ban', 'Unable to write to logfile: ' . $logFilePath);
+            }
         }
         return true; // continue to next hook
     }
