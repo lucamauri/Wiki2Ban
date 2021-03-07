@@ -68,25 +68,33 @@ The path to the logfile the extension will write and that Fail2Ban will read to 
 
 ## Fail2Ban configuration
 
-Finally you need to configure a rule and a filter on Fail2Ban using the data in the files
+Finally you need to configure a rule and a filter on Fail2Ban: this extension contains two files in `f2bconf` direcory showing basic configuration.
 
-```
-/f2bconf/w2bfilter.conf
-```
+### Rule
 
-and
+Rule is shown in the file:
 
 ```
 /f2bconf/w2brule.conf
 ```
 
-included in this extension.
+the content of this file can be copied into Fail2Ban's main configuration file (usually `/etc/fail2ban/jail.local`) or kept as a separate configuration file in `jail.d` directory.
+
+### Filter
+
+Filter is shown in the file:
+
+```
+/f2bconf/w2bfilter.conf
+```
+
+this file should be copied into Fail2Ban's filter directory (usually `/etc/fail2ban/filter.d/`).
 
 ## Troubleshoot
 
 To read detailed logging messages, you can intercept the [log group](https://www.mediawiki.org/wiki/Manual:$wgDebugLogGroups) named `Wiki2Ban`: for instace with the following configuration into `LocalSetting.php`:
 
-```
+```php
 $wgShowExceptionDetails = true;
 $wgDebugLogGroups['Wiki2Ban'] = "/var/log/mediawiki/Wiki2Ban-{$wgDBname}.log";
 ```
@@ -122,7 +130,7 @@ https://regex101.com/r/i9RxRO/1/
 
 ## License
 
-[GNU General Public License, version 2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
+[GNU General Public License, version 3](https://www.gnu.org/licenses/gpl-3.0.html)
 
 ## Maintainers
 

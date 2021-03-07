@@ -32,7 +32,10 @@ class Wiki2BanHooks
 	 */
     public static function onAuthManagerLoginAuthenticateAudit($response, $user, $username)
     {
-        $logFilePath = "/var/log/wiki2ban.log";
+        $config = MediaWikiServices::getInstance()->getMainConfig();
+        $siteName = $config->get('Sitename');
+
+        $logFilePath = "/var/log/mediawiki/wiki2ban.log";
         if ( $response->status == "FAIL" ){
             $now = new DateTime('NOW');
             $logTimeStamp = $now->format('c');
@@ -41,7 +44,7 @@ class Wiki2BanHooks
             $clientIP = $_SERVER['REMOTE_ADDR']; //https://www.php.net/manual/en/reserved.variables.server.php
             wfDebugLog('Wiki2Ban', 'IP address is: ' . $clientIP);
 
-            if (!error_log("$date MediaWiki login FAIL on $wgSitename from: $sourceIP\n", 3, $logFilePath)){
+            if (!error_log("$logTimeStamp MediaWiki login FAIL on $siteName from: $clientIP\n", 3, $logFilePath)){
                 wfDebugLog('Wiki2Ban', 'Unable to write to logfile: ' . $logFilePath);
             }
         }

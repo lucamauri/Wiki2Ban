@@ -3,14 +3,12 @@
   "author": "[https://www.lucamauri.com/ Luca Mauri]",
   "url": "https://github.com/lucamauri/Wiki2Ban",
   "description": "Log useful information to Fail2Ban utility",
-  "version": "0.5",
+  "version": "1.0",
   "license-name": "GPL-3.0-or-later",
   "type": "parserhook",
   "manifest_version": 1,
   "AutoloadClasses": {
-    "PageToGitHubCommon": "includes/P2GCommon.php",
-    "PageToGitHubHooks": "PageToGitHub.php",
-    "PageToGitHubSpecial": "includes/P2GSpecial.php",
+    "Wiki2BanCommon": "includes/W2BCommon.php",    
     "Wiki2BanHooks": "Wiki2Ban.php",
     "Wiki2BanSpecial": "includes/W2BSpecial.php"
   },
@@ -20,41 +18,16 @@
   "config": {
     "W2BLogFile": {
       "description": "The file where to log failure and where to feed Fail2Ban engine",
-      "value": "/var/log/mediawiki/Wiki2Ban.log"
-    },
-    "P2GNameSpace": {
-      "description": "Label of the namespace to check",
-      "descriptionmsg": "p2g-config-namespace",
-      "value": null
-    },
-    "P2GOwner": {
-      "description": "Name of the owner of the repository",
-      "value": null
-    },
-    "P2GRepo": {
-      "description": "Name of the repository where to save the files",
-      "value": null
-    },
-    "P2GKeyword": {
-      "description": "Optional keyword to include selected page only in the transport",
-      "value": null
-    },
-    "P2GAddKeyword": {
-      "description": "Add keyword to file name",
-      "value": null
-    },
-    "P2GAuthToken": {
-      "description": "Personal GitHub token",
-      "value": null
+      "value": "/var/log/mediawiki/wiki2ban.log"
     }
   },
   "ConfigRegistry": {
-    "PageToGitHub": "GlobalVarConfig::newInstance"
+    "Wiki2Ban": "GlobalVarConfig::newInstance"
   },
   "SpecialPages": {
     "Wiki2Ban": "Wiki2BanSpecial"
   },
   "MessagesDirs": {
-    "PageToGitHub": ["i18n"]
+    "Wiki2Ban": ["i18n"]
   }
 }
