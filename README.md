@@ -59,7 +59,7 @@ Below this line, add the configuration parameters as explained below in _Configu
 In the `LocalSettigs.php` file add:
 
 ```
-$wgW2BlogFilePath = "/var/log/wiki2ban.log";
+$wgW2BlogFilePath = "/var/log/mediawiki/wiki2ban.log";
 ```
 
 ### \$wgW2BlogFilePath
@@ -78,7 +78,7 @@ Rule is shown in the file:
 /f2bconf/w2brule.conf
 ```
 
-the content of this file can be copied into Fail2Ban's main configuration file (usually `/etc/fail2ban/jail.local`) or kept as a separate configuration file in `jail.d` directory.
+the content of this file can be copied into Fail2Ban's main configuration file (usually `/etc/fail2ban/jail.local`) or kept as a separate configuration file in `jail.d` directory. Remember to customize the parameter `logpath` with the path of the file defined in the configuration file (see above).
 
 ### Filter
 
@@ -126,6 +126,7 @@ https://regex101.com/r/i9RxRO/1/
 
 ```regex
 (?P<timestamp>.*) MediaWiki login FAIL on (?P<wiki>.*) from: <HOST>
+(?<timestamp>.*) MediaWiki login FAIL[ \t]+(for (?<user>.*)|)[ \t]+on (?<wiki>.*) from: (?<host>\S+)
 ```
 
 ## License

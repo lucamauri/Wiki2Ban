@@ -1,0 +1,58 @@
+{
+    "$schema": "https://lnav.org/schemas/format-v1.schema.json",
+    "wiki2ban_log": {
+        "title": "Wiki2Ban Actions Log",
+        "description": "The log that summarizes the actions of Wiki2Ban MediaWiki extension.",
+        "url": "https://github.com/lucamauri/Wiki2Ban",
+        "multiline": false,
+        "regex": {
+            "basic": {
+                "pattern": "(?<timestamp>.*) MediaWiki login FAIL[ \\t]+(for (?<user>.*)|)[ \\t]+on (?<wiki>.*) from: (?<host>\\S+)"
+            }
+        },
+        "body-field": "feature",
+        "level-field": "level",
+        "module-field": "module",
+        "level": {
+            "info": "INFO",
+            "warning": "NOTICE"
+        },
+        "value": {
+            "feature": {
+                "kind": "string",
+                "identifier": true,
+                "description": "The Fail2Ban feature in action"
+            },
+            "host": {
+                "kind": "string",
+                "collate": "ipaddress",
+                "identifier": true,
+                "description": "The client IP address"
+            },
+            "action": {
+                "kind": "string",
+                "identifier": true,
+                "description": "The action being performed by Fail2Ban"
+            },
+            "service": {
+                "kind": "string",
+                "identifier": true,
+                "description": "The service that generated the entry"
+            }
+        },
+        "sample": [
+            {
+                "line": "2021-03-07 00:02:35,052 fail2ban.actions        [517]: NOTICE  [sshd] Ban 221.181.185.143",
+                "level": "warning"
+            },
+            {
+                "line": "2021-03-07 00:06:06,331 fail2ban.filter         [517]: INFO    [sshd] Found 49.234.219.217 - 2021-03-07 00:06:05",
+                "level": "info"
+            },
+            {
+                "line": "2021-03-07 00:11:37,892 fail2ban.actions        [517]: NOTICE  [sshd] Unban 222.93.19.206",
+                "level": "info"
+            }
+        ]
+    }
+}
