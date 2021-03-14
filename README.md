@@ -10,6 +10,7 @@
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/lucamauri/PageToGitHub.svg)](http://isitmaintained.com/project/lucamauri/PageToGitHub "Percentage of issues still open")
 
 # Wiki2Ban
+
 <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/W2BLogo.svg" width="256" align="left" />Wiki2Ban, W2B in short, is a MediaWiki extension to generate log of failed authentication that can be fed into [Fail2Ban](https://github.com/fail2ban/fail2ban) to block relevant IP addresses.
 It was originally conceived and written by [Luca Mauri](https://github.com/lucamauri) for use in [Wikitrek](https://github.com/WikiTrek): it is released as open source here in case it can be useful to anybody else.
 
@@ -97,6 +98,10 @@ To read detailed logging messages, you can intercept the [log group](https://www
 $wgShowExceptionDetails = true;
 $wgDebugLogGroups['Wiki2Ban'] = "/var/log/mediawiki/Wiki2Ban-{$wgDBname}.log";
 ```
+
+## Additional file
+
+`wiki2ban.json` contained in `f2bconf` folder is a definition for _Log Navigator_ application as explained here: https://docs.lnav.org/en/latest/formats.html#defining-a-new-format
 
 ## Documentation
 
