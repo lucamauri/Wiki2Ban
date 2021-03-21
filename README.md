@@ -1,24 +1,26 @@
 [![StyleCI](https://github.styleci.io/repos/238323866/shield?branch=master)](https://github.styleci.io/repos/238323866)
-[![Latest Stable Version](https://poser.pugx.org/lucamauri/page-to-github/v/stable)](https://packagist.org/packages/lucamauri/page-to-github)
-[![Total Downloads](https://poser.pugx.org/lucamauri/page-to-github/downloads)](https://packagist.org/packages/lucamauri/page-to-github)
-[![Latest Unstable Version](https://poser.pugx.org/lucamauri/page-to-github/v/unstable)](https://packagist.org/packages/lucamauri/page-to-github)
-[![License](https://poser.pugx.org/lucamauri/page-to-github/license)](https://packagist.org/packages/lucamauri/page-to-github)
-[![Monthly Downloads](https://poser.pugx.org/lucamauri/page-to-github/d/monthly)](https://packagist.org/packages/lucamauri/page-to-github)
-[![Daily Downloads](https://poser.pugx.org/lucamauri/page-to-github/d/daily)](https://packagist.org/packages/lucamauri/page-to-github)
-[![composer.lock](https://poser.pugx.org/lucamauri/page-to-github/composerlock)](https://packagist.org/packages/lucamauri/page-to-github)
-[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/lucamauri/PageToGitHub.svg)](http://isitmaintained.com/project/lucamauri/PageToGitHub "Average time to resolve an issue")
-[![Percentage of issues still open](http://isitmaintained.com/badge/open/lucamauri/PageToGitHub.svg)](http://isitmaintained.com/project/lucamauri/PageToGitHub "Percentage of issues still open")
+[![Latest Stable Version](https://poser.pugx.org/lucamauri/wiki2ban/v/stable)](https://packagist.org/packages/lucamauri/wiki2ban)
+[![Total Downloads](https://poser.pugx.org/lucamauri/wiki2ban/downloads)](https://packagist.org/packages/lucamauri/wiki2ban)
+[![Latest Unstable Version](https://poser.pugx.org/lucamauri/wiki2ban/v/unstable)](https://packagist.org/packages/lucamauri/wiki2ban)
+[![License](https://poser.pugx.org/lucamauri/wiki2ban/license)](https://packagist.org/packages/lucamauri/wiki2ban)
+[![Monthly Downloads](https://poser.pugx.org/lucamauri/wiki2ban/d/monthly)](https://packagist.org/packages/lucamauri/wiki2ban)
+[![Daily Downloads](https://poser.pugx.org/lucamauri/wiki2ban/d/daily)](https://packagist.org/packages/lucamauri/wiki2ban)
+[![composer.lock](https://poser.pugx.org/lucamauri/wiki2ban/composerlock)](https://packagist.org/packages/lucamauri/wiki2ban)
+[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/lucamauri/PageToGitHub.svg)](http://isitmaintained.com/project/lucamauri/wiki2ban "Average time to resolve an issue")
+[![Percentage of issues still open](http://isitmaintained.com/badge/open/lucamauri/PageToGitHub.svg)](http://isitmaintained.com/project/lucamauri/wiki2ban "Percentage of issues still open")
 
 # Wiki2Ban
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/W2BLogo.svg" width="256" align="left" />Wiki2Ban, W2B in short, is a MediaWiki extension to generate log of failed authentication that can be fed into [Fail2Ban](https://github.com/fail2ban/fail2ban) to block relevant IP addresses.
-It was originally conceived and written by [Luca Mauri](https://github.com/lucamauri) for use in [Wikitrek](https://github.com/WikiTrek): it is released as open source here in case it can be useful to anybody else.
+
+This extension is inspired by [Extension Fail2Banlog](https://www.mediawiki.org/wiki/Extension:Fail2banlog), but this extension is unmantained and built for an old MediaWiki version.<br />
+So this was written from scratch by written by [Luca Mauri](https://github.com/lucamauri) originally for use in [Wikitrek](https://github.com/WikiTrek): it is released as open source here in case it can be useful to anybody else.
 
 ## Features
 
 ## Requirements
 
-## Install
+## Installation
 
 Easiest way to install the extension is using _Composer_: it will automatically resolve all the dependencies and install them as well.
 
@@ -27,7 +29,7 @@ Add the `require` configuration as in the following example to the `composer.loc
 ```JSON
 {
     "require": {
-        "lucamauri/wiki-2-ban": "~1.0"
+        "lucamauri/wiki2ban": "~1.0"
     },
     "extra": {
         "merge-plugin": {
@@ -90,7 +92,7 @@ Filter is shown in the file:
 
 this file should be copied into Fail2Ban's filter directory (usually `/etc/fail2ban/filter.d/`).
 
-## Troubleshoot
+## Troubleshooting
 
 To read detailed logging messages, you can intercept the [log group](https://www.mediawiki.org/wiki/Manual:$wgDebugLogGroups) named `Wiki2Ban`: for instace with the following configuration into `LocalSetting.php`:
 
@@ -102,36 +104,6 @@ $wgDebugLogGroups['Wiki2Ban'] = "/var/log/mediawiki/Wiki2Ban-{$wgDBname}.log";
 ## Additional file
 
 `wiki2ban.json` contained in `f2bconf` folder is a definition for _Log Navigator_ application as explained here: https://docs.lnav.org/en/latest/formats.html#defining-a-new-format
-
-## Documentation
-
-### Notes
-
-https://www.php.net/manual/en/datetime.format.php
-ISO 8601 date
-
-```PHP
-$date = new DateTime('2000-01-01');
-echo $date->format('c');
-```
-
-https://www.burlutsky.su/security/fail2ban-add-custom-rule/
-
-```log
-2004-02-12T15:19:21+00:00 MediaWiki login FAIL on WikiTrek from: 192.168.1.38
-```
-
-```PHP
-$date .. " MediaWiki login FAIL on " .. $wgSitename .. " from: " .. $sourceIP
-"$date MediaWiki login FAIL on $wgSitename from: $sourceIP\n"
-```
-
-https://regex101.com/r/i9RxRO/1/
-
-```regex
-(?P<timestamp>.*) MediaWiki login FAIL on (?P<wiki>.*) from: <HOST>
-(?<timestamp>.*) MediaWiki login FAIL[ \t]+(for (?<user>.*)|)[ \t]+on (?<wiki>.*) from: (?<host>\S+)
-```
 
 ## License
 
