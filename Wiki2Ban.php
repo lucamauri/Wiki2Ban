@@ -23,13 +23,13 @@ use MediaWiki\MediaWikiServices;
 class Wiki2BanHooks
 {
     /**
-	 * Hook for login auditing
-	 * https://www.mediawiki.org/wiki/Manual:Hooks/AuthManagerLoginAuthenticateAudit
-	 *
-	 * @param AuthenticationResponse $response Is login successful?
-	 * @param User|null              $user User object on successful auth
-	 * @param string                 $username Username for failed attempts.
-	 */
+     * Hook for login auditing
+     * https://www.mediawiki.org/wiki/Manual:Hooks/AuthManagerLoginAuthenticateAudit
+     * 
+     * @param AuthenticationResponse $response Is login successful?
+     * @param User|null              $user User object on successful auth
+     * @param string                 $username Username for failed attempts.
+     **/
     public static function onAuthManagerLoginAuthenticateAudit($response, $user, $username)
     {
         $config = MediaWikiServices::getInstance()->getMainConfig();
