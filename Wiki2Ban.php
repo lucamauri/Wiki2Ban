@@ -37,13 +37,13 @@ class Wiki2BanHooks
         $logFilePath = $config->get('W2BlogFilePath');
         $defaultLogFilePath = '/var/log/mediawiki/wiki2ban.log';
 
-        if ($logFilePath == null or $logFilePath == ''){
-            wfDebugLog('Wiki2Ban', 'Unable to read W2BlogFilePath parameter value. Defaulting to: ' . $defaultLogFilePath);
+        if ($logFilePath == null or $logFilePath == '') {
+            wfDebugLog('Wiki2Ban', 'Unable to read W2BlogFilePath parameter value. Defaulting to: '.$defaultLogFilePath);
             $logFilePath = $defaultLogFilePath;
         }
 
         
-        if ($response->status == 'FAIL'){
+        if ($response->status == 'FAIL') {
             $now = new DateTime('NOW');
             $logTimeStamp = $now->format('c');
             wfDebugLog('Wiki2Ban', 'TimeStamp is: '.$logTimeStamp);
@@ -51,7 +51,7 @@ class Wiki2BanHooks
             $clientIP = $_SERVER['REMOTE_ADDR']; //https://www.php.net/manual/en/reserved.variables.server.php
             wfDebugLog('Wiki2Ban', 'IP address is: '.$clientIP);
 
-            if (!error_log("$logTimeStamp MediaWiki login FAIL for $username on $siteName from: $clientIP\n", 3, $logFilePath)){
+            if (!error_log("$logTimeStamp MediaWiki login FAIL for $username on $siteName from: $clientIP\n", 3, $logFilePath)) {
                 wfDebugLog('Wiki2Ban', 'Unable to write to logfile: '.$logFilePath);
             }
         }
