@@ -42,7 +42,6 @@ class Wiki2BanHooks
             $logFilePath = $defaultLogFilePath;
         }
 
-        
         if ($response->status == 'FAIL') {
             $now = new DateTime('NOW');
             $logTimeStamp = $now->format('c');
