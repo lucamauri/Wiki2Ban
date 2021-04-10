@@ -8,9 +8,8 @@
   "type": "parserhook",
   "manifest_version": 1,
   "AutoloadClasses": {
-    "Wiki2BanCommon": "includes/W2BCommon.php",    
-    "Wiki2BanHooks": "Wiki2Ban.php",
-    "Wiki2BanSpecial": "includes/W2BSpecial.php"
+    "Wiki2BanCommon": "includes/W2BCommon.php",
+    "Wiki2BanHooks": "Wiki2Ban.php"
   },
   "Hooks": {
 		"AuthManagerLoginAuthenticateAudit": "Wiki2BanHooks::onAuthManagerLoginAuthenticateAudit"
@@ -23,9 +22,6 @@
   },
   "ConfigRegistry": {
     "Wiki2Ban": "GlobalVarConfig::newInstance"
-  },
-  "SpecialPages": {
-    "Wiki2Ban": "Wiki2BanSpecial"
   },
   "MessagesDirs": {
     "Wiki2Ban": ["i18n"]
