@@ -1,13 +1,13 @@
-[![StyleCI](https://github.styleci.io/repos/238323866/shield?branch=master)](https://github.styleci.io/repos/238323866)
-[![Latest Stable Version](https://poser.pugx.org/lucamauri/wiki2ban/v/stable)](https://packagist.org/packages/lucamauri/wiki2ban)
-[![Total Downloads](https://poser.pugx.org/lucamauri/wiki2ban/downloads)](https://packagist.org/packages/lucamauri/wiki2ban)
-[![Latest Unstable Version](https://poser.pugx.org/lucamauri/wiki2ban/v/unstable)](https://packagist.org/packages/lucamauri/wiki2ban)
-[![License](https://poser.pugx.org/lucamauri/wiki2ban/license)](https://packagist.org/packages/lucamauri/wiki2ban)
+[![StyleCI](https://github.styleci.io/repos/336330317/shield?branch=master)](https://github.styleci.io/repos/336330317?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/lucamauri/wiki2ban/v)](//packagist.org/packages/lucamauri/wiki2ban)
+[![Total Downloads](https://poser.pugx.org/lucamauri/wiki2ban/downloads)](//packagist.org/packages/lucamauri/wiki2ban)
+[![Latest Unstable Version](https://poser.pugx.org/lucamauri/wiki2ban/v/unstable)](//packagist.org/packages/lucamauri/wiki2ban)
+[![License](https://poser.pugx.org/lucamauri/wiki2ban/license)](//packagist.org/packages/lucamauri/wiki2ban)
 [![Monthly Downloads](https://poser.pugx.org/lucamauri/wiki2ban/d/monthly)](https://packagist.org/packages/lucamauri/wiki2ban)
 [![Daily Downloads](https://poser.pugx.org/lucamauri/wiki2ban/d/daily)](https://packagist.org/packages/lucamauri/wiki2ban)
-[![composer.lock](https://poser.pugx.org/lucamauri/wiki2ban/composerlock)](https://packagist.org/packages/lucamauri/wiki2ban)
-[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/lucamauri/PageToGitHub.svg)](http://isitmaintained.com/project/lucamauri/wiki2ban "Average time to resolve an issue")
-[![Percentage of issues still open](http://isitmaintained.com/badge/open/lucamauri/PageToGitHub.svg)](http://isitmaintained.com/project/lucamauri/wiki2ban "Percentage of issues still open")
+[![composer.lock](https://poser.pugx.org/lucamauri/wiki2ban/composerlock)](//packagist.org/packages/lucamauri/wiki2ban)
+[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/lucamauri/wiki2ban.svg)](http://isitmaintained.com/project/lucamauri/wiki2ban "Average time to resolve an issue")
+[![Percentage of issues still open](http://isitmaintained.com/badge/open/lucamauri/wiki2ban.svg)](http://isitmaintained.com/project/lucamauri/wiki2ban "Percentage of issues still open")
 
 # Wiki2Ban
 
