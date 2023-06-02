@@ -51,7 +51,7 @@ composer install --no-dev
 Add the following code near the rest of the extensions loading in the site's `LocalSettings.php`:
 
 ```PHP
-wfLoadExtension('Wiki2Ban');
+wfLoadExtension('Wiki2ban');
 ```
 
 Below this line, add the configuration parameters as explained below in _Configuration_ section.
