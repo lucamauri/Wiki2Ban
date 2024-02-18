@@ -9,8 +9,14 @@
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/lucamauri/wiki2ban.svg)](http://isitmaintained.com/project/lucamauri/wiki2ban "Average time to resolve an issue")
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/lucamauri/wiki2ban.svg)](http://isitmaintained.com/project/lucamauri/wiki2ban "Percentage of issues still open")
 
-# Wiki2Ban
 
+
+## Badges
+[![GPLv3 License](https://img.shields.io/badge/License-GPLv3-008033?logo=gpl)](https://opensource.org/licenses/)
+[![Built with Visual Studio Code](https://img.shields.io/badge/Built_with-VS_Code-007ACC?logo=visualstudiocode)](https://code.visualstudio.com)
+[![Discuss on StackOverflow](https://img.shields.io/badge/Discuss_on-Stack_Overflow-fe7a16?logo=stackoverflow)](https://stackoverflow.com/questions/tagged/wikitoban?tab=Active)
+
+# Wiki2Ban
 <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/W2BLogo.svg" width="256" align="left" />Wiki2Ban, W2B in short, is a MediaWiki extension to generate log of failed authentication that can be fed into [Fail2Ban](https://github.com/fail2ban/fail2ban) to block relevant IP addresses.
 
 This extension is inspired by [Extension Fail2Banlog](https://www.mediawiki.org/wiki/Extension:Fail2banlog), but this extension is unmantained and built for an old MediaWiki version.<br />
