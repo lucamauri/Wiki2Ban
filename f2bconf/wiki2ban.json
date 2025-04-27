@@ -9,7 +9,7 @@
             "std": {
                 "pattern": "(?<timestamp>.*) MediaWiki login FAIL[ \\t]+(for (?<user>.*)|)[ \\t]+on (?<wiki>.*) from: (?<host>\\S+)"
             }
-        },        
+        },
         "value": {
             "timestamp": {
                 "kind": "string",
@@ -34,17 +34,14 @@
         },
         "sample": [
             {
-                "line": "2025-04-26T12:04:45+02:00 MediaWiki login FAIL for HassieBrassard on Wikitrek from: 196.242.114.71",
-                "level": "fatal"
+                "line": "2025-04-26T12:04:45+02:00 MediaWiki login FAIL for HassieBrassard on Wikitrek from: 196.242.114.71"
             },
             {
-                "line": "2025-04-26T12:11:28+02:00 MediaWiki login FAIL for WillLefroy3213 on Wikitrek from: 86.62.56.4",
-                "level": "fatal"
+                "line": "2025-04-26T12:11:28+02:00 MediaWiki login FAIL for WillLefroy3213 on Wikitrek from: 86.62.56.4"
             },
             {
-                "line": "2025-04-26T12:18:57+02:00 MediaWiki login FAIL for GenesisKruse40 on Wikitrek from: 46.203.232.91",
-                "level": "fatal"
-            },
+                "line": "2025-04-26T12:18:57+02:00 MediaWiki login FAIL for GenesisKruse40 on Wikitrek from: 46.203.232.91"
+            }
         ]
     }
 }
