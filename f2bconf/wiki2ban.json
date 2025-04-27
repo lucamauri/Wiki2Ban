@@ -2,26 +2,18 @@
     "$schema": "https://lnav.org/schemas/format-v1.schema.json",
     "wiki2ban_log": {
         "title": "Wiki2Ban Actions Log",
-        "description": "The log that summarizes the actions of Wiki2Ban MediaWiki extension.",
+        "description": "The log that summarizes the actions of Wiki2Ban MediaWiki extension. Format file generated from regex101 entry -- https://regex101.com/r/ypltzp/1",
         "url": "https://github.com/lucamauri/Wiki2Ban",
         "multiline": false,
         "regex": {
-            "basic": {
+            "std": {
                 "pattern": "(?<timestamp>.*) MediaWiki login FAIL[ \\t]+(for (?<user>.*)|)[ \\t]+on (?<wiki>.*) from: (?<host>\\S+)"
             }
-        },
-        "body-field": "feature",
-        "level-field": "level",
-        "module-field": "module",
-        "level": {
-            "info": "INFO",
-            "warning": "NOTICE"
-        },
+        },        
         "value": {
-            "feature": {
+            "timestamp": {
                 "kind": "string",
-                "identifier": true,
-                "description": "The Fail2Ban feature in action"
+                "identifier": true
             },
             "host": {
                 "kind": "string",
@@ -29,30 +21,30 @@
                 "identifier": true,
                 "description": "The client IP address"
             },
-            "action": {
+            "user": {
                 "kind": "string",
                 "identifier": true,
-                "description": "The action being performed by Fail2Ban"
+                "description": "The username trying to access"
             },
-            "service": {
+            "wiki": {
                 "kind": "string",
                 "identifier": true,
-                "description": "The service that generated the entry"
+                "description": "Name of the wiki that generated the error"
             }
         },
         "sample": [
             {
-                "line": "2021-03-07 00:02:35,052 fail2ban.actions        [517]: NOTICE  [sshd] Ban 221.181.185.143",
-                "level": "warning"
+                "line": "2025-04-26T12:04:45+02:00 MediaWiki login FAIL for HassieBrassard on Wikitrek from: 196.242.114.71",
+                "level": "fatal"
             },
             {
-                "line": "2021-03-07 00:06:06,331 fail2ban.filter         [517]: INFO    [sshd] Found 49.234.219.217 - 2021-03-07 00:06:05",
-                "level": "info"
+                "line": "2025-04-26T12:11:28+02:00 MediaWiki login FAIL for WillLefroy3213 on Wikitrek from: 86.62.56.4",
+                "level": "fatal"
             },
             {
-                "line": "2021-03-07 00:11:37,892 fail2ban.actions        [517]: NOTICE  [sshd] Unban 222.93.19.206",
-                "level": "info"
-            }
+                "line": "2025-04-26T12:18:57+02:00 MediaWiki login FAIL for GenesisKruse40 on Wikitrek from: 46.203.232.91",
+                "level": "fatal"
+            },
         ]
     }
 }
