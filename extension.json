@@ -25,5 +25,13 @@
   },
   "MessagesDirs": {
     "Wiki2Ban": ["i18n"]
+  },
+  "requires": {
+	"MediaWiki": ">= 1.35.0",
+	"platform": {
+		"php": ">= 7.1",
+		"ext-curl": "*"
+	}
   }
+
 }
