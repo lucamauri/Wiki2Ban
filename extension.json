@@ -3,7 +3,7 @@
   "author": "[https://www.lucamauri.com/ Luca Mauri]",
   "url": "https://github.com/lucamauri/Wiki2Ban",
   "descriptionmsg": "wiki2ban-desc",
-  "version": "1.0",
+  "version": "1.1.0",
   "license-name": "GPL-2.0-or-later",
   "type": "other",
   "manifest_version": 2,
@@ -23,7 +23,7 @@
     "Wiki2Ban": ["i18n"]
   },
   "requires": {
-    "MediaWiki": ">= 1.35.0",
+    "MediaWiki": ">= 1.42.0",
     "platform": {
       "php": ">= 8.4"
     }
