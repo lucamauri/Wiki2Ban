@@ -7,11 +7,17 @@
   "license-name": "GPL-2.0-or-later",
   "type": "other",
   "manifest_version": 2,
-  "AutoloadClasses": {
-    "Wiki2BanHooks": "Wiki2Ban.php"
+  "HookHandlers": {
+    "main": {
+      "class": "Wiki2BanHooks",
+      "services": ["MainConfig"]
+    }
   },
   "Hooks": {
-    "AuthManagerLoginAuthenticateAudit": "Wiki2BanHooks::onAuthManagerLoginAuthenticateAudit"
+    "AuthManagerLoginAuthenticateAudit": "main"
+  },
+  "AutoloadClasses": {
+    "Wiki2BanHooks": "Wiki2Ban.php"
   },
   "config": {
     "W2BLogFilePath": {
