@@ -18,8 +18,10 @@
  * @file
  */
 
-use MediaWiki\Auth;
+use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\MediaWikiServices;
+use RequestContext;
+use User;
 
 class Wiki2BanHooks
 {
@@ -31,15 +33,18 @@ class Wiki2BanHooks
      * @param User|null              $user     User object on successful auth
      * @param string                 $username Username for failed attempts.
      **/
-    public static function onAuthManagerLoginAuthenticateAudit($response, $user, $username)
-    {
+    public static function onAuthManagerLoginAuthenticateAudit(
+        AuthenticationResponse $response,
+        ?User $user,
+        ?string $username
+    ): void {
         $config = MediaWikiServices::getInstance()->getMainConfig();
         $siteName = $config->get('Sitename');
         $logFilePath = $config->get('W2BLogFilePath');
         $defaultLogFilePath = '/var/log/mediawiki/wiki2ban.log';
 
-        if ($logFilePath == null or $logFilePath == '') {
-            wfDebugLog('Wiki2Ban', 'Unable to read W2BlogFilePath parameter value. Defaulting to: '.$defaultLogFilePath);
+        if ( $logFilePath === null || $logFilePath === '' ) {
+            wfDebugLog('Wiki2Ban', 'Unable to read W2BLogFilePath parameter value. Defaulting to: '.$defaultLogFilePath);
             $logFilePath = $defaultLogFilePath;
         }
 
@@ -48,14 +53,14 @@ class Wiki2BanHooks
             $logTimeStamp = $now->format('c');
             wfDebugLog('Wiki2Ban', 'TimeStamp is: '.$logTimeStamp);
 
-            $clientIP = $_SERVER['REMOTE_ADDR']; //https://www.php.net/manual/en/reserved.variables.server.php
+            $clientIP = RequestContext::getMain()->getRequest()->getIP();
             wfDebugLog('Wiki2Ban', 'IP address is: '.$clientIP);
 
-            if (!error_log("$logTimeStamp MediaWiki login FAIL for $username on $siteName from: $clientIP\n", 3, $logFilePath)) {
+            $safeUsername = $username ?? '(unknown)';
+
+            if (!error_log("$logTimeStamp MediaWiki login FAIL for $safeUsername on $siteName from: $clientIP\n", 3, $logFilePath)) {
                 wfDebugLog('Wiki2Ban', 'Unable to write to logfile: '.$logFilePath);
             }
         }
-
-        return true; // continue to next hook
     }
 }
