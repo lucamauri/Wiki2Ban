@@ -1,11 +1,12 @@
 {
   "name": "lucamauri/wiki2ban",
-  "description": "Allow the transport of page content to GitHub on page save",
+  "description": "Log failed MediaWiki login attempts to a file consumable by Fail2Ban",
   "type": "mediawiki-extension",
   "keywords": [
     "php",
-    "lua",
-    "github"
+    "mediawiki",
+    "security",
+    "fail2ban"
   ],
   "homepage": "https://github.com/lucamauri/Wiki2Ban",
   "authors": [
@@ -15,7 +16,7 @@
       "role": "Developer"
     }
   ],
-  "license": "GPL-3.0-or-later",
+  "license": "GPL-2.0-or-later",
   "support": {
     "issues": "https://github.com/lucamauri/Wiki2Ban/issues",
     "source": "https://github.com/lucamauri/Wiki2Ban",

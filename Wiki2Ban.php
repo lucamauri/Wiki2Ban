@@ -35,7 +35,7 @@ class Wiki2BanHooks
     {
         $config = MediaWikiServices::getInstance()->getMainConfig();
         $siteName = $config->get('Sitename');
-        $logFilePath = $config->get('W2BlogFilePath');
+        $logFilePath = $config->get('W2BLogFilePath');
         $defaultLogFilePath = '/var/log/mediawiki/wiki2ban.log';
 
         if ($logFilePath == null or $logFilePath == '') {
