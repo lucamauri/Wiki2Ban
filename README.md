@@ -25,7 +25,7 @@ This extension is inspired by [Extension:Fail2banlog](https://www.mediawiki.org/
 
 ## Requirements
 
-- MediaWiki >= 1.35.0
+- MediaWiki >= 1.42.0
 - PHP >= 8.4
 - [Fail2Ban](https://github.com/fail2ban/fail2ban) >= 0.10 (for progressive banning support)
 
