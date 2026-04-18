@@ -2,36 +2,36 @@
   "name": "Wiki2Ban",
   "author": "[https://www.lucamauri.com/ Luca Mauri]",
   "url": "https://github.com/lucamauri/Wiki2Ban",
-  "description": "Log useful information to Fail2Ban utility",
-  "version": "1.0",
-  "license-name": "GPL-3.0-or-later",
-  "type": "parserhook",
-  "manifest_version": 1,
-  "AutoloadClasses": {
-    "Wiki2BanCommon": "includes/W2BCommon.php",
-    "Wiki2BanHooks": "Wiki2Ban.php"
-  },
-  "Hooks": {
-		"AuthManagerLoginAuthenticateAudit": "Wiki2BanHooks::onAuthManagerLoginAuthenticateAudit"
-	},
-  "config": {
-    "W2BLogFile": {
-      "description": "The file where to log failure and where to feed Fail2Ban engine",
-      "value": "/var/log/mediawiki/wiki2ban.log"
+  "descriptionmsg": "wiki2ban-desc",
+  "version": "1.1.0",
+  "license-name": "GPL-2.0-or-later",
+  "type": "other",
+  "manifest_version": 2,
+  "HookHandlers": {
+    "main": {
+      "class": "Wiki2BanHooks",
+      "services": ["MainConfig"]
     }
   },
-  "ConfigRegistry": {
-    "Wiki2Ban": "GlobalVarConfig::newInstance"
+  "Hooks": {
+    "AuthManagerLoginAuthenticateAudit": "main"
+  },
+  "AutoloadClasses": {
+    "Wiki2BanHooks": "Wiki2Ban.php"
+  },
+  "config": {
+    "W2BLogFilePath": {
+      "description": "Path to the log file read by Fail2Ban. The web server process must have write permission to this file.",
+      "value": "/var/log/mediawiki/wiki2ban.log"
+    }
   },
   "MessagesDirs": {
     "Wiki2Ban": ["i18n"]
   },
   "requires": {
-	"MediaWiki": ">= 1.35.0",
-	"platform": {
-		"php": ">= 7.1",
-		"ext-curl": "*"
-	}
+    "MediaWiki": ">= 1.42.0",
+    "platform": {
+      "php": ">= 8.4"
+    }
   }
-
 }

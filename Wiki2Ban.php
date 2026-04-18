@@ -1,61 +1,68 @@
 <?php
-
 /**
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License along
- * with this program; if not, write to the Free Software Foundation, Inc.,
- * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ * Wiki2Ban — MediaWiki extension to log failed login attempts for Fail2Ban.
  *
  * @file
+ * @license GPL-2.0-or-later
  */
 
-use MediaWiki\Auth;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Auth\AuthenticationResponse;
+use MediaWiki\Config\MainConfig;
+use RequestContext;
+use User;
 
-class Wiki2BanHooks
-{
+class Wiki2BanHooks {
+
+    /** @var MainConfig */
+    private MainConfig $config;
+
     /**
-     * Hook for login auditing
-     * https://www.mediawiki.org/wiki/Manual:Hooks/AuthManagerLoginAuthenticateAudit.
+     * Constructor — receives services injected by MediaWiki's service container.
      *
-     * @param AuthenticationResponse $response Is login successful?
-     * @param User|null              $user     User object on successful auth
-     * @param string                 $username Username for failed attempts.
-     **/
-    public static function onAuthManagerLoginAuthenticateAudit($response, $user, $username)
-    {
-        $config = MediaWikiServices::getInstance()->getMainConfig();
-        $siteName = $config->get('Sitename');
-        $logFilePath = $config->get('W2BlogFilePath');
-        $defaultLogFilePath = '/var/log/mediawiki/wiki2ban.log';
+     * @param MainConfig $config The main MediaWiki configuration object
+     */
+    public function __construct( MainConfig $config ) {
+        $this->config = $config;
+    }
 
-        if ($logFilePath == null or $logFilePath == '') {
-            wfDebugLog('Wiki2Ban', 'Unable to read W2BlogFilePath parameter value. Defaulting to: '.$defaultLogFilePath);
-            $logFilePath = $defaultLogFilePath;
+    /**
+     * Hook handler for login auditing.
+     * Fires on every login attempt and writes a log line for failed attempts.
+     *
+     * @see https://www.mediawiki.org/wiki/Manual:Hooks/AuthManagerLoginAuthenticateAudit
+     *
+     * @param AuthenticationResponse $response The authentication result
+     * @param User|null              $user     User object on successful auth, null on failure
+     * @param string|null            $username Username supplied in the login attempt
+     */
+    public function onAuthManagerLoginAuthenticateAudit(
+        AuthenticationResponse $response,
+        ?User $user,
+        ?string $username
+    ): void {
+        $siteName = $this->config->get( 'Sitename' );
+       $logFilePath = $this->config->get( 'W2BLogFilePath' );
+       // Guard against an operator explicitly setting the value to an empty string.
+       // Under normal circumstances this branch is unreachable, as the default
+       // value defined in extension.json is always returned by the config system.
+       if ( $logFilePath === '' ) {
+        $logFilePath = '/var/log/mediawiki/wiki2ban.log';
+        wfDebugLog( 'Wiki2Ban', 'W2BLogFilePath is empty, falling back to default: ' . $logFilePath );
         }
 
-        if ($response->status == 'FAIL') {
-            $now = new DateTime('NOW');
-            $logTimeStamp = $now->format('c');
-            wfDebugLog('Wiki2Ban', 'TimeStamp is: '.$logTimeStamp);
+        if ( $response->status === 'FAIL' ) {
+            $now = new DateTime( 'NOW' );
+            $logTimeStamp = $now->format( 'c' );
+            wfDebugLog( 'Wiki2Ban', 'TimeStamp is: ' . $logTimeStamp );
 
-            $clientIP = $_SERVER['REMOTE_ADDR']; //https://www.php.net/manual/en/reserved.variables.server.php
-            wfDebugLog('Wiki2Ban', 'IP address is: '.$clientIP);
+            $clientIP = RequestContext::getMain()->getRequest()->getIP();
+            wfDebugLog( 'Wiki2Ban', 'IP address is: ' . $clientIP );
 
-            if (!error_log("$logTimeStamp MediaWiki login FAIL for $username on $siteName from: $clientIP\n", 3, $logFilePath)) {
-                wfDebugLog('Wiki2Ban', 'Unable to write to logfile: '.$logFilePath);
+            $safeUsername = $username ?? '(unknown)';
+
+            if ( !error_log( "$logTimeStamp MediaWiki login FAIL for \"$safeUsername\" on $siteName from: $clientIP\n", 3, $logFilePath ) ) {
+                wfDebugLog( 'Wiki2Ban', 'Unable to write to logfile: ' . $logFilePath );
             }
         }
-
-        return true; // continue to next hook
     }
 }
