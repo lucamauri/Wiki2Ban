@@ -41,13 +41,13 @@ class Wiki2BanHooks {
         ?string $username
     ): void {
         $siteName = $this->config->get( 'Sitename' );
-       $logFilePath = $this->config->get( 'W2BLogFilePath' );
-       // Guard against an operator explicitly setting the value to an empty string.
-       // Under normal circumstances this branch is unreachable, as the default
-       // value defined in extension.json is always returned by the config system.
-       if ( $logFilePath === '' ) {
-        $logFilePath = '/var/log/mediawiki/wiki2ban.log';
-        wfDebugLog( 'Wiki2Ban', 'W2BLogFilePath is empty, falling back to default: ' . $logFilePath );
+        $logFilePath = $this->config->get( 'W2BLogFilePath' );
+        // Guard against an operator explicitly setting the value to an empty string.
+        // Under normal circumstances this branch is unreachable, as the default
+        // value defined in extension.json is always returned by the config system.
+        if ( $logFilePath === '' ) {
+            $logFilePath = '/var/log/mediawiki/wiki2ban.log';
+            wfDebugLog( 'Wiki2Ban', 'W2BLogFilePath is empty, falling back to default: ' . $logFilePath );
         }
 
         if ( $response->status === 'FAIL' ) {
