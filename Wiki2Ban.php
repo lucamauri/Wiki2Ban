@@ -7,21 +7,21 @@
  */
 
 use MediaWiki\Auth\AuthenticationResponse;
-use MediaWiki\Config\MainConfig;
+use MediaWiki\Config\Config;
 use RequestContext;
 use User;
 
 class Wiki2BanHooks {
 
-    /** @var MainConfig */
-    private MainConfig $config;
+    /** @var Config */
+    private Config $config;
 
     /**
      * Constructor — receives services injected by MediaWiki's service container.
      *
-     * @param MainConfig $config The main MediaWiki configuration object
+     * @param Config $config The main MediaWiki configuration object
      */
-    public function __construct( MainConfig $config ) {
+    public function __construct( Config $config ) {
         $this->config = $config;
     }
 
